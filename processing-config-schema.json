@@ -35,7 +35,8 @@
           }
         }
       }
-    }, {
+    }]
+  }, {
     "title": "Paramètres",
     "required": ["urlParcelData"],
     "properties": {
@@ -61,6 +62,5 @@
         }
       }
     }
-  }]
   }]
 }
