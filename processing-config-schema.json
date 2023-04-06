@@ -35,6 +35,32 @@
           }
         }
       }
-    }]
+    }, {
+    "title": "Paramètres",
+    "required": ["urlParcelData"],
+    "properties": {
+      "url": {"title": "URL source", "type": "string", "description": "les protocoles supportés sont HTTP, HTTPS"},
+      "clearFiles": {
+        "title": "supprimer les fichiers téléchargés",
+        "type": "boolean",
+        "default": true
+      },
+      "processType": {
+        "type": "string",
+        "title": "Fichier à traiter",
+        "oneOf": [
+          { "const": "rnic", "title": "Registre national d'Immatriculation des Copropriétés" }
+        ]
+      },
+      "filter": {
+        "type": "object",
+        "title": "Filtrer les lignes",
+        "properties": {
+          "column": {"type": "string", "title": "Code colonne"},
+          "value": {"type": "string", "title": "Valeur"}
+        }
+      }
+    }
+  }]
   }]
 }

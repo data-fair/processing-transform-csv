@@ -1,10 +1,8 @@
 process.env.NODE_ENV = 'test'
 const config = require('config')
-const axios = require('axios')
-const chalk = require('chalk')
-const moment = require('moment')
 const assert = require('assert').strict
-const main = require('../')
+const transformCSV = require('../')
+const testUtils = require('@data-fair/processings-test-utils')
 
 describe('Hello world processing', () => {
   it('should expose a plugin config schema for super admins', async () => {
@@ -14,54 +12,31 @@ describe('Hello world processing', () => {
 
   it('should expose a processing config schema for users', async () => {
     const schema = require('../processing-config-schema.json')
-    assert.ok(schema)
+    assert.equal(schema.type, 'object')
   })
 
-  it.only('should run a task', async function () {
-    this.timeout(2400000)
+  it('should run a task', async function () {
+    this.timeout(60000)
 
-    const axiosInstance = axios.create({
-      baseURL: config.dataFairUrl,
-      // headers: { 'x-apiKey': config.dataFairAPIKey },
-      maxContentLength: Infinity,
-      maxBodyLength: Infinity
-    })
-    // customize axios errors for shorter stack traces when a request fails
-    axiosInstance.interceptors.response.use(response => response, error => {
-      if (!error.response) return Promise.reject(error)
-      delete error.response.request
-      error.response.config = { method: error.response.config.method, url: error.response.config.url, data: error.response.config.data }
-      return Promise.reject(error.response)
-    })
-    await main.run({
+    const context = testUtils.context({
       pluginConfig: {},
       processingConfig: {
         datasetMode: 'create',
-        dataset: { title: 'Mise a jour dans le test', id: 'banatic' }
-      },
-      processingId: 'test',
-      axios: axiosInstance,
-      log: {
-        step: (msg) => console.log(chalk.blue.bold.underline(`[${moment().format('LTS')}] ${msg}`)),
-        error: (msg, extra) => console.log(chalk.red.bold(`[${moment().format('LTS')}] ${msg}`), extra),
-        warning: (msg, extra) => console.log(chalk.red(`[${moment().format('LTS')}] ${msg}`), extra),
-        info: (msg, extra) => console.log(chalk.blue(`[${moment().format('LTS')}] ${msg}`), extra),
-        debug: (msg, extra) => {
-          // console.log(`[${moment().format('LTS')}] ${msg}`, extra)
+        dataset: { title: 'RNIC test' },
+        url: 'https://www.data.gouv.fr/fr/datasets/r/3ea8e2c3-0038-464a-b17e-cd5c91f65ce2',
+        processType: 'rnic',
+        clearFiles: false,
+        filter: {
+          column: 'code_postal',
+          value: '56000'
         }
       },
-      dir: 'data/',
-      patchConfig: async (patch) => {
-        console.log('received config patch', patch)
-        // Object.assign(processingConfig, patch)
-      }
-    })
-
-    /* const dataset = (await axiosInstance.get('api/v1/datasets/hello-world-test')).data
-    assert.equal(dataset.title, 'Hello world test')
-    const lines = (await axiosInstance.get('api/v1/datasets/hello-world-test/lines')).data.results
-    assert.equal(lines.length, 1)
-    assert.equal(lines[0]._id, 'hello')
-    assert.equal(lines[0].message, 'Hello world test !') */
+      tmpDir: 'data/'
+    }, config, false)
+    await transformCSV.run(context)
+    assert.equal(context.processingConfig.datasetMode, 'update')
+    assert.equal(context.processingConfig.dataset.title, 'RNIC test')
+    const datasetId = context.processingConfig.dataset.id
+    assert.ok(datasetId.startsWith('rnic-test'))
   })
 })
