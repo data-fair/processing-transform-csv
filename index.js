@@ -2,19 +2,18 @@ const fs = require('fs-extra')
 const path = require('path')
 const util = require('util')
 const FormData = require('form-data')
-const { download } = require('./lib/fetch-data')
+const { download, clearFiles } = require('./lib/fetch-data')
 const { process } = require('./lib/process')
 // const datasetSchema = require('./resources/schema.json')
 
 // main execution method
 exports.run = async ({ pluginConfig, processingConfig, processingId, dir, tmpDir, axios, log, patchConfig, ws }) => {
-  // await clearFiles(dir, log)
   await download(processingConfig, tmpDir, axios, log)
   await process(processingConfig, tmpDir, log)
 
   const formData = new FormData()
-  // formData.append('id', processingConfig.dataset.id)
   formData.append('title', processingConfig.dataset.title)
+  if (processingConfig.dataset.id) formData.append('id', processingConfig.dataset.id)
   // formData.append('schema', JSON.stringify(datasetSchema))
   formData.append('extras', JSON.stringify({ processingId }))
   const filename = processingConfig.processType + '-transformed.csv'
@@ -36,5 +35,8 @@ exports.run = async ({ pluginConfig, processingConfig, processingId, dir, tmpDir
     }
   } catch (err) {
     console.log(JSON.stringify(err, null, 2))
+  }
+  if (processingConfig.clearFiles) {
+    await clearFiles(tmpDir, log)
   }
 }

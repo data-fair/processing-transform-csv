@@ -38,7 +38,7 @@
     }]
   }, {
     "title": "Paramètres",
-    "required": ["urlParcelData"],
+    "required": ["url", "processType"],
     "properties": {
       "url": {"title": "URL source", "type": "string", "description": "les protocoles supportés sont HTTP, HTTPS"},
       "clearFiles": {
