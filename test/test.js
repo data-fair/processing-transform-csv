@@ -14,7 +14,28 @@ describe('Hello world processing', () => {
     const schema = require('../processing-config-schema.json')
     assert.equal(schema.type, 'object')
   })
+  it('should run a task', async function () {
+    this.timeout(60000)
 
+    const context = testUtils.context({
+      pluginConfig: {},
+      processingConfig: {
+        datasetMode: 'create',
+        dataset: { title: 'ICPE test' },
+        url: 'https://mapsref.brgm.fr/wxs/georisques/georisques_dl?&service=wfs&version=2.0.0&request=getfeature&typename=InstallationsClassees&outputformat=csv',
+        processType: 'icpe',
+        clearFiles: false
+
+      },
+      tmpDir: 'data/'
+    }, config, false)
+    await transformCSV.run(context)
+    assert.equal(context.processingConfig.datasetMode, 'update')
+    assert.equal(context.processingConfig.dataset.title, 'ICPE test')
+    const datasetId = context.processingConfig.dataset.id
+    assert.ok(datasetId.startsWith('icpe-test'))
+  })
+  /**
   it('should run a task', async function () {
     this.timeout(60000)
 
@@ -39,4 +60,5 @@ describe('Hello world processing', () => {
     const datasetId = context.processingConfig.dataset.id
     assert.ok(datasetId.startsWith('rnic-test'))
   })
+  */
 })
