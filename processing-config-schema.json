@@ -50,7 +50,9 @@
         "type": "string",
         "title": "Fichier à traiter",
         "oneOf": [
-          { "const": "rnic", "title": "Registre national d'Immatriculation des Copropriétés" }
+          { "const": "rnic", "title": "Registre national d'Immatriculation des Copropriétés" },
+          { "const": "icpe", "title": "Installations Classées Protection de l'Environnement" },
+          { "const": "cog", "title": "Communes du COG" }
         ]
       },
       "filter": {
