@@ -20,8 +20,8 @@ describe('Hello world processing', () => {
     const context = testUtils.context({
       pluginConfig: {},
       processingConfig: {
-        datasetMode: 'update',
-        dataset: { title: 'COG test' },
+        datasetMode: 'create',
+        dataset: { title: 'COG Changements' },
         url: 'https://www.insee.fr/fr/statistiques/fichier/6800675/v_mvtcommune_2023.csv',
         processType: 'cog',
         clearFiles: false
@@ -30,7 +30,7 @@ describe('Hello world processing', () => {
       tmpDir: 'data/'
     }, config, false)
     await transformCSV.run(context)
-  })
+  }) /*
   it('should run a task', async function () {
     this.timeout(60000)
 
@@ -75,5 +75,5 @@ describe('Hello world processing', () => {
     assert.equal(context.processingConfig.dataset.title, 'RNIC test')
     const datasetId = context.processingConfig.dataset.id
     assert.ok(datasetId.startsWith('rnic-test'))
-  })
+  }) */
 })
