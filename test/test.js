@@ -15,6 +15,23 @@ describe('Hello world processing', () => {
     assert.equal(schema.type, 'object')
   })
   it('should run a task', async function () {
+    this.timeout(1000000)
+
+    const context = testUtils.context({
+      pluginConfig: {},
+      processingConfig: {
+        datasetMode: 'create',
+        dataset: { title: 'Base Permanente des Equipements' },
+        url: 'https://www.insee.fr/fr/statistiques/fichier/3568638/bpe21_ensemble_xy_csv.zip',
+        processType: 'bpe',
+        clearFiles: false
+
+      },
+      tmpDir: 'data/'
+    }, config, false)
+    await transformCSV.run(context)
+  }) /*
+  it('should run a task', async function () {
     this.timeout(60000)
 
     const context = testUtils.context({

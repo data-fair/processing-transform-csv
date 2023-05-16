@@ -52,7 +52,8 @@
         "oneOf": [
           { "const": "rnic", "title": "Registre national d'Immatriculation des Copropriétés" },
           { "const": "icpe", "title": "Installations Classées Protection de l'Environnement" },
-          { "const": "cog", "title": "Communes du COG" }
+          { "const": "cog", "title": "Communes du COG" },
+          { "const": "bpe", "title": "Base Permanente des Equipements"}
         ]
       },
       "filter": {
