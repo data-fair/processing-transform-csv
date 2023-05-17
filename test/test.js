@@ -24,8 +24,11 @@ describe('Hello world processing', () => {
         dataset: { title: 'Base Permanente des Equipements' },
         url: 'https://www.insee.fr/fr/statistiques/fichier/3568638/bpe21_ensemble_xy_csv.zip',
         processType: 'bpe',
+        filter: {
+          column: 'DEP',
+          value: '56'
+        },
         clearFiles: false
-
       },
       tmpDir: 'data/'
     }, config, false)
