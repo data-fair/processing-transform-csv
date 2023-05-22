@@ -21,7 +21,7 @@ describe('Hello world processing', () => {
       pluginConfig: {},
       processingConfig: {
         datasetMode: 'create',
-        dataset: { title: 'Base Permanente des Equipements' },
+        dataset: { title: 'Base Permanente des Equipements 56' },
         url: 'https://www.insee.fr/fr/statistiques/fichier/3568638/bpe21_ensemble_xy_csv.zip',
         processType: 'bpe',
         filter: {
