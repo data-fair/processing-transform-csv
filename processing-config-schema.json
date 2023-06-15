@@ -25,12 +25,14 @@
         "datasetMode": { "type": "string", "const": "update" },
         "dataset": {
           "type": "object",
+          "title": "Jeu de donnée existant",
           "x-fromUrl": "{context.dataFairUrl}/api/v1/datasets?q={q}&select=id,title&{context.ownerFilter}",
           "x-itemsProp": "results",
           "x-itemTitle": "title",
-          "x-itemKey": "href",
+          "x-itemKey": "id",
           "properties": {
             "id": {"type": "string", "title": "Identifiant"},
+            "href": { "type": "string", "title": "url" },
             "title": {"type": "string", "title": "Titre"}
           }
         }
