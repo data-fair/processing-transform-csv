@@ -13,8 +13,6 @@ exports.run = async ({ pluginConfig, processingConfig, processingId, dir, tmpDir
 
   const formData = new FormData()
   formData.append('title', processingConfig.dataset.title)
-  if (processingConfig.dataset.id) formData.append('id', processingConfig.dataset.id)
-  // formData.append('schema', JSON.stringify(datasetSchema))
   formData.append('extras', JSON.stringify({ processingId }))
   const filename = processingConfig.processType + '-transformed.csv'
   formData.append('file', fs.createReadStream(path.join(tmpDir, filename)), { filename })
