@@ -16,6 +16,11 @@ exports.run = async ({ pluginConfig, processingConfig, processingId, dir, tmpDir
   formData.append('extras', JSON.stringify({ processingId }))
   const filename = processingConfig.processType + '-transformed.csv'
   formData.append('file', fs.createReadStream(path.join(tmpDir, filename)), { filename })
+  if (fs.existsSync(`./lib/schemas/${processingConfig.processType}.js`)) {
+    const schema = require(`./lib/schemas/${processingConfig.processType}.js`)
+    formData.append('schema', JSON.stringify(schema))
+  }
+
   formData.getLength = util.promisify(formData.getLength)
 
   try {
