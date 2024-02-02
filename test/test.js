@@ -21,6 +21,23 @@ describe('Hello world processing', () => {
       pluginConfig: {},
       processingConfig: {
         datasetMode: 'create',
+        dataset: { title: 'Mérimée test' },
+        url: 'https://www.data.gouv.fr/fr/datasets/r/3a52af4a-f9da-4dcc-8110-b07774dfb3bc',
+        processType: 'merimee',
+        clearFiles: false
+      },
+      tmpDir: 'data/'
+    }, config, false)
+    await transformCSV.run(context)
+  })
+  /*
+  it('should run a task', async function () {
+    this.timeout(1000000)
+
+    const context = testUtils.context({
+      pluginConfig: {},
+      processingConfig: {
+        datasetMode: 'create',
         dataset: { title: 'Base Permanente des Equipements 56' },
         url: 'https://www.insee.fr/fr/statistiques/fichier/3568638/bpe21_ensemble_xy_csv.zip',
         processType: 'bpe',
@@ -33,7 +50,7 @@ describe('Hello world processing', () => {
       tmpDir: 'data/'
     }, config, false)
     await transformCSV.run(context)
-  }) /*
+  })
   it('should run a task', async function () {
     this.timeout(60000)
 
@@ -50,7 +67,7 @@ describe('Hello world processing', () => {
       tmpDir: 'data/'
     }, config, false)
     await transformCSV.run(context)
-  }) /*
+  })
   it('should run a task', async function () {
     this.timeout(60000)
 
