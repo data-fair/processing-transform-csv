@@ -4,7 +4,6 @@ const util = require('util')
 const FormData = require('form-data')
 const { download, clearFiles } = require('./lib/fetch-data')
 const { process } = require('./lib/process')
-// const datasetSchema = require('./resources/schema.json')
 
 // main execution method
 exports.run = async ({ pluginConfig, processingConfig, processingId, dir, tmpDir, axios, log, patchConfig, ws }) => {

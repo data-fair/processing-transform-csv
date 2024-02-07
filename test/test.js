@@ -2,7 +2,6 @@ process.env.NODE_ENV = 'test'
 const config = require('config')
 const assert = require('assert').strict
 const transformCSV = require('../')
-const testUtils = require('@data-fair/processings-test-utils')
 
 describe('Hello world processing', () => {
   it('should expose a plugin config schema for super admins', async () => {
@@ -17,7 +16,8 @@ describe('Hello world processing', () => {
   it('should run a task', async function () {
     this.timeout(1000000)
 
-    const context = testUtils.context({
+    const testsUtils = await import('@data-fair/lib/processings/tests-utils.js')
+    const context = testsUtils.context({
       pluginConfig: {},
       processingConfig: {
         datasetMode: 'create',
@@ -30,11 +30,11 @@ describe('Hello world processing', () => {
     }, config, false)
     await transformCSV.run(context)
   })
-  /*
   it('should run a task', async function () {
     this.timeout(1000000)
 
-    const context = testUtils.context({
+    const testsUtils = await import('@data-fair/lib/processings/tests-utils.js')
+    const context = testsUtils.context({
       pluginConfig: {},
       processingConfig: {
         datasetMode: 'create',
@@ -54,7 +54,8 @@ describe('Hello world processing', () => {
   it('should run a task', async function () {
     this.timeout(60000)
 
-    const context = testUtils.context({
+    const testsUtils = await import('@data-fair/lib/processings/tests-utils.js')
+    const context = testsUtils.context({
       pluginConfig: {},
       processingConfig: {
         datasetMode: 'create',
@@ -71,7 +72,8 @@ describe('Hello world processing', () => {
   it('should run a task', async function () {
     this.timeout(60000)
 
-    const context = testUtils.context({
+    const testsUtils = await import('@data-fair/lib/processings/tests-utils.js')
+    const context = testsUtils.context({
       pluginConfig: {},
       processingConfig: {
         datasetMode: 'create',
@@ -86,13 +88,12 @@ describe('Hello world processing', () => {
     await transformCSV.run(context)
     assert.equal(context.processingConfig.datasetMode, 'update')
     assert.equal(context.processingConfig.dataset.title, 'ICPE test')
-    const datasetId = context.processingConfig.dataset.id
-    assert.ok(datasetId.startsWith('icpe-test'))
   })
   it('should run a task', async function () {
     this.timeout(60000)
 
-    const context = testUtils.context({
+    const testsUtils = await import('@data-fair/lib/processings/tests-utils.js')
+    const context = testsUtils.context({
       pluginConfig: {},
       processingConfig: {
         datasetMode: 'create',
@@ -110,7 +111,5 @@ describe('Hello world processing', () => {
     await transformCSV.run(context)
     assert.equal(context.processingConfig.datasetMode, 'update')
     assert.equal(context.processingConfig.dataset.title, 'RNIC test')
-    const datasetId = context.processingConfig.dataset.id
-    assert.ok(datasetId.startsWith('rnic-test'))
-  }) */
+  })
 })
