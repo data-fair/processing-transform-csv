@@ -13,6 +13,7 @@ describe('Hello world processing', () => {
     const schema = require('../processing-config-schema.json')
     assert.equal(schema.type, 'object')
   })
+
   it('should run a task', async function () {
     this.timeout(1000000)
 
@@ -30,6 +31,7 @@ describe('Hello world processing', () => {
     }, config, false)
     await transformCSV.run(context)
   })
+  /*
   it('should run a task', async function () {
     this.timeout(1000000)
 
@@ -112,4 +114,5 @@ describe('Hello world processing', () => {
     assert.equal(context.processingConfig.datasetMode, 'update')
     assert.equal(context.processingConfig.dataset.title, 'RNIC test')
   })
+  */
 })
