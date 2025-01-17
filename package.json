@@ -1,6 +1,6 @@
 {
   "name": "@data-fair/processing-transform-csv",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Transform a CSV file and create or update a data-fair dataset.",
   "main": "index.js",
   "scripts": {
