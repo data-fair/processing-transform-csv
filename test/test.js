@@ -17,7 +17,7 @@ describe('Hello world processing', () => {
   it('should run a task', async function () {
     this.timeout(1000000)
 
-    const testsUtils = await import('@data-fair/lib/processings/tests-utils.js')
+    const testsUtils = await import('@data-fair/lib-processing-dev/tests-utils.js')
     const context = testsUtils.context({
       pluginConfig: {},
       processingConfig: {
@@ -35,7 +35,7 @@ describe('Hello world processing', () => {
   // it('should run a task', async function () {
   //   this.timeout(1000000)
 
-  //   const testsUtils = await import('@data-fair/lib/processings/tests-utils.js')
+  //   const testsUtils = await import('@data-fair/lib-processing-dev/tests-utils.js')
   //   const context = testsUtils.context({
   //     pluginConfig: {},
   //     processingConfig: {

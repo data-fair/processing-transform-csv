@@ -14,7 +14,7 @@
     "data-fair-processings-plugin"
   ],
   "devDependencies": {
-    "@data-fair/lib": "^0.21.0",
+    "@data-fair/lib-processing-dev": "^0.2.0",
     "axios": "^1.6.7",
     "config": "^3.3.6",
     "dayjs": "^1.11.10",
