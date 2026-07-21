@@ -1,4 +1,4 @@
-module.exports = function (item) {
+export default function (item: Record<string, any>): Record<string, any> | null {
   if (item.COM_AV !== item.COM_AP && item.COM_AV && item.COM_AP && item.TYPECOM_AV !== 'ARM' && item.TYPECOM_AP !== 'ARM' && item.TYPECOM_AV !== 'COMA' && item.TYPECOM_AP !== 'COMA') {
     return {
       COM_AV: item.COM_AV.padStart(5, '0'),

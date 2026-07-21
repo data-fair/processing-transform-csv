@@ -1,12 +1,18 @@
-const util = require('util')
-const pump = util.promisify(require('pump'))
-const exec = util.promisify(require('child_process').exec)
+import path from 'path'
+import fs from 'fs-extra'
+import { promisify } from 'util'
+import { execFile as execFileCb } from 'child_process'
+import pumpCb from 'pump'
+import type { AxiosInstance } from 'axios'
+import type { ProcessingContext } from '@data-fair/lib-common-types/processings.js'
+import type { ProcessingConfig } from '#types/processingConfig/index.ts'
 
-const path = require('path')
-const fs = require('fs-extra')
+const pump = promisify(pumpCb) as (...streams: unknown[]) => Promise<void>
+const execFile = promisify(execFileCb)
+
 let processType = ''
 
-const withStreamableFile = async (filePath, fn) => {
+const withStreamableFile = async (filePath: string, fn: (writeStream: fs.WriteStream) => Promise<void>): Promise<void> => {
   // creating empty file before streaming seems to fix some weird bugs with NFS
   await fs.ensureFile(filePath + '.tmp')
   await fn(fs.createWriteStream(filePath + '.tmp'))
@@ -19,7 +25,7 @@ const withStreamableFile = async (filePath, fn) => {
   if (filePath.includes('.zip')) {
     try {
       const pathToFile = filePath.split('/' + processType + '-source.zip')[0]
-      await exec(`unzip -o ${filePath} -d ${pathToFile}`)
+      await execFile('unzip', ['-o', filePath, '-d', pathToFile])
       if (filePath.includes(processType)) {
         const files = await fs.readdir(pathToFile)
         for (const file of files) {
@@ -35,7 +41,7 @@ const withStreamableFile = async (filePath, fn) => {
   }
 }
 
-exports.download = async (processingConfig, dir, axios, log) => {
+export const download = async (processingConfig: ProcessingConfig, dir: string, axios: AxiosInstance, log: ProcessingContext<ProcessingConfig>['log']): Promise<void> => {
   await fs.ensureDir(dir)
   let filePath
   processType = processingConfig.processType
@@ -57,7 +63,7 @@ exports.download = async (processingConfig, dir, axios, log) => {
   }
 }
 
-exports.clearFiles = async (dir, log) => {
+export const clearFiles = async (dir: string, log: ProcessingContext<ProcessingConfig>['log']): Promise<void> => {
   await log.debug('suppression des anciens fichiers téléchargés')
   await fs.remove(dir)
 }

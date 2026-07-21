@@ -3,7 +3,7 @@
 // coordonnées LATITUDE/LONGITUDE nativement : aucune transformation ligne à
 // ligne n'est nécessaire (auparavant on recalculait lat/long depuis LAMBERT_X/Y
 // avec proj4). Toute la curation (libellés, groupes, concepts, x-labels) est
-// portée par ../schemas/bpe.js et envoyée à la création du jeu de données.
-module.exports = function (item) {
+// portée par ../schemas/bpe.ts et envoyée à la création du jeu de données.
+export default function (item: Record<string, any>): Record<string, any> {
   return item
 }

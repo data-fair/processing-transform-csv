@@ -1,7 +1,7 @@
 // Extensions data-fair appliquées au jeu de données à sa création.
 // Enrichissement master-data : à partir du code commune (DEPCOM, concept
 // codeCommune), on récupère le nom du département et le nom de l'EPCI.
-module.exports = [
+export default [
   {
     active: true,
     type: 'remoteService',

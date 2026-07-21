@@ -1,15 +1,15 @@
-module.exports = function (item) {
-  const ignoreIfNonConnu = (value) => (value || '').trim() !== 'non connu' ? (value || '') : ''
+export default function (item: Record<string, any>): Record<string, any> {
+  const ignoreIfNonConnu = (value: string) => (value || '').trim() !== 'non connu' ? (value || '') : ''
 
   const parcelles = []
-  const adresses_complementaires = []
+  const adressesComplementaires = []
   for (const i of [1, 2, 3]) {
     const codeCommune = ignoreIfNonConnu(item['code_insee_parcelle_' + i])
     if (codeCommune) {
       parcelles.push(codeCommune + ignoreIfNonConnu(item['prefixe_parcelle_' + i]) + ignoreIfNonConnu(item['section_parcelle_' + i]).toUpperCase() + ignoreIfNonConnu(item['numero_parcelle_' + i]))
     }
     const adresseComp = ignoreIfNonConnu(item['adresse_complementaire_' + i])
-    if (adresseComp) adresses_complementaires.push(adresseComp)
+    if (adresseComp) adressesComplementaires.push(adresseComp)
   }
   return {
     nom_copropriete: ignoreIfNonConnu(item.nom_usage_copropriete),
@@ -29,7 +29,7 @@ module.exports = function (item) {
     date_immatriculation: item.date_immatriculation,
     date_derniere_maj: item.date_derniere_maj,
     parcelles: parcelles.join('/'),
-    adresses_complementaires: adresses_complementaires.join('/'),
+    adresses_complementaires: adressesComplementaires.join('/'),
     code_ape: ignoreIfNonConnu(item.code_ape),
     commune_representant: ignoreIfNonConnu(item.commune_representant_legal),
     type_syndic: ignoreIfNonConnu(item.type_syndic),

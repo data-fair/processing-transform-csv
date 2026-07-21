@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {
     key: 'code_aiot',
     'x-originalName': 'code_aiot',

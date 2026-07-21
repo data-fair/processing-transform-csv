@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {
     key: 'reference',
     'x-originalName': 'reference',

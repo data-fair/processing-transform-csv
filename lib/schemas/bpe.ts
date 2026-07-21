@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {
     key: 'an',
     'x-originalName': 'AN',
@@ -198,19 +198,19 @@ module.exports = [
     description: 'Région d\'implantation de l\'équipement',
     'x-refersTo': 'http://rdf.insee.fr/def/geo#codeRegion',
     'x-labels': {
-      '11': 'Ile-de-France',
-      '24': 'Centre-Val de Loire',
-      '27': 'Bourgogne-Franche-Comté',
-      '28': 'Normandie',
-      '32': 'Hauts-de-France',
-      '44': 'Grand Est',
-      '52': 'Pays de la Loire',
-      '53': 'Bretagne',
-      '75': 'Nouvelle-Aquitaine',
-      '76': 'Occitanie',
-      '84': 'Auvergne-Rhône-Alpes',
-      '93': 'Provence-Alpes-Côte d\'Azur',
-      '94': 'Corse',
+      11: 'Ile-de-France',
+      24: 'Centre-Val de Loire',
+      27: 'Bourgogne-Franche-Comté',
+      28: 'Normandie',
+      32: 'Hauts-de-France',
+      44: 'Grand Est',
+      52: 'Pays de la Loire',
+      53: 'Bretagne',
+      75: 'Nouvelle-Aquitaine',
+      76: 'Occitanie',
+      84: 'Auvergne-Rhône-Alpes',
+      93: 'Provence-Alpes-Côte d\'Azur',
+      94: 'Corse',
       '01': 'Guadeloupe',
       '02': 'Martinique',
       '03': 'Guyane',
@@ -276,9 +276,9 @@ module.exports = [
     type: 'integer',
     title: 'Grille communale de densité à 3 niveaux',
     'x-labels': {
-      '1': 'Communes densément peuplées',
-      '2': 'Communes de densité intermédiaire',
-      '3': 'Communes rurales'
+      1: 'Communes densément peuplées',
+      2: 'Communes de densité intermédiaire',
+      3: 'Communes rurales'
     },
     'x-group': 'Découpage administratif'
   },
@@ -288,13 +288,13 @@ module.exports = [
     type: 'integer',
     title: 'Grille communale de densité à 7 niveaux',
     'x-labels': {
-      '1': 'Grands centres urbains',
-      '2': 'Centres urbains intermédiaires',
-      '3': 'Petites villes',
-      '4': 'Ceintures urbaines',
-      '5': 'Bourgs ruraux',
-      '6': 'Rural à habitat dispersé',
-      '7': 'Rural à habitat très dispersé'
+      1: 'Grands centres urbains',
+      2: 'Centres urbains intermédiaires',
+      3: 'Petites villes',
+      4: 'Ceintures urbaines',
+      5: 'Bourgs ruraux',
+      6: 'Rural à habitat dispersé',
+      7: 'Rural à habitat très dispersé'
     },
     'x-group': 'Découpage administratif'
   },
@@ -320,9 +320,9 @@ module.exports = [
     title: 'Qualité du géoréférencement dans le quartier prioritaire 2015',
     description: 'Indicateur de qualité du géoréférencement dans le quartier prioritaire de la politique de la ville 2015',
     'x-labels': {
-      '1': 'Appartenance sûre au zonage',
-      '2': 'Appartenance probable au zonage',
-      '3': 'Appartenance aléatoire ou indéterminée au zonage',
+      1: 'Appartenance sûre au zonage',
+      2: 'Appartenance probable au zonage',
+      3: 'Appartenance aléatoire ou indéterminée au zonage',
       _Z: 'Sans objet'
     },
     'x-group': 'Zonages politique de la ville'
@@ -333,9 +333,9 @@ module.exports = [
     type: 'string',
     title: 'Indicateur de qualité du géoréférencement dans le quartier prioritaire de la politique de la ville 2024',
     'x-labels': {
-      '1': 'Appartenance sûre au zonage',
-      '2': 'Appartenance probable au zonage',
-      '3': 'Appartenance aléatoire ou indéterminée au zonage',
+      1: 'Appartenance sûre au zonage',
+      2: 'Appartenance probable au zonage',
+      3: 'Appartenance aléatoire ou indéterminée au zonage',
       _Z: 'Sans objet'
     },
     'x-group': 'Zonages politique de la ville'
@@ -355,9 +355,9 @@ module.exports = [
     title: 'Qualité du géoréférencement dans le quartier de veille active',
     description: 'Indicateur de qualité du géoréférencement dans le quartier de veille active',
     'x-labels': {
-      '1': 'Appartenance sûre au zonage',
-      '2': 'Appartenance probable au zonage',
-      '3': 'Appartenance aléatoire ou indéterminée au zonage',
+      1: 'Appartenance sûre au zonage',
+      2: 'Appartenance probable au zonage',
+      3: 'Appartenance aléatoire ou indéterminée au zonage',
       _Z: 'Sans objet'
     },
     'x-group': 'Zonages politique de la ville'
@@ -377,9 +377,9 @@ module.exports = [
     title: 'Qualité du géoréférencement dans la zone urbaine sensible',
     description: 'Indicateur de qualité du géoréférencement dans la zone urbaine sensible',
     'x-labels': {
-      '1': 'Appartenance sûre au zonage',
-      '2': 'Appartenance probable au zonage',
-      '3': 'Appartenance aléatoire ou indéterminée au zonage',
+      1: 'Appartenance sûre au zonage',
+      2: 'Appartenance probable au zonage',
+      3: 'Appartenance aléatoire ou indéterminée au zonage',
       _Z: 'Sans objet'
     },
     'x-group': 'Zonages politique de la ville'
@@ -424,11 +424,11 @@ module.exports = [
     type: 'integer',
     title: 'Code EPSG du système de coordonnées',
     'x-labels': {
-      '2154': 'Lambert 93',
-      '2972': 'UTM 22 Nord',
-      '2975': 'UTM 40 Sud',
-      '4471': 'UTM 38 Sud',
-      '5490': 'UTM 20 Nord'
+      2154: 'Lambert 93',
+      2972: 'UTM 22 Nord',
+      2975: 'UTM 40 Sud',
+      4471: 'UTM 38 Sud',
+      5490: 'UTM 20 Nord'
     },
     'x-group': 'Coordonnées géographiques'
   },
@@ -454,11 +454,11 @@ module.exports = [
     title: 'Précision du repérage par l’adresse',
     description: 'Indicateur de précision du repérage par l’adresse',
     'x-labels': {
-      '11': 'Voie sûre, Numéro trouvé',
-      '12': 'Voie sûre, Position aléatoire dans la voie',
-      '21': 'Voie probable, Numéro trouvé',
-      '22': 'Voie probable, Position aléatoire dans la voie',
-      '33': 'Voie inconnue, Position aléatoire dans la commune',
+      11: 'Voie sûre, Numéro trouvé',
+      12: 'Voie sûre, Position aléatoire dans la voie',
+      21: 'Voie probable, Numéro trouvé',
+      22: 'Voie probable, Position aléatoire dans la voie',
+      33: 'Voie inconnue, Position aléatoire dans la commune',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -484,9 +484,9 @@ module.exports = [
     type: 'string',
     title: 'Indicateur de qualité du géoréférencement dans l\'iris',
     'x-labels': {
-      '1': 'Appartenance sûre au zonage',
-      '2': 'Appartenance probable au zonage',
-      '3': 'Appartenance aléatoire ou indéterminée au zonage',
+      1: 'Appartenance sûre au zonage',
+      2: 'Appartenance probable au zonage',
+      3: 'Appartenance aléatoire ou indéterminée au zonage',
       X: 'Non concerné par le zonage'
     },
     'x-group': 'Coordonnées géographiques'
@@ -784,9 +784,9 @@ module.exports = [
     type: 'string',
     title: 'Secteur public, privé hors contrat, privé sous contrat',
     'x-labels': {
-      '1': 'Public',
-      '2': 'Privé hors contrat',
-      '3': 'Privé sous contrat'
+      1: 'Public',
+      2: 'Privé hors contrat',
+      3: 'Privé sous contrat'
     },
     'x-group': 'Classification de l\'équipement'
   },
@@ -809,8 +809,8 @@ module.exports = [
     type: 'string',
     title: 'Présence ou absence d\'une cantine',
     'x-labels': {
-      '0': 'Absence',
-      '1': 'Présence',
+      0: 'Absence',
+      1: 'Présence',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -823,8 +823,8 @@ module.exports = [
     title: 'Présence ou absence d\'un internat',
     description: 'Présence ou absence d’un internat',
     'x-labels': {
-      '0': 'Absence',
-      '1': 'Présence',
+      0: 'Absence',
+      1: 'Présence',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -848,8 +848,8 @@ module.exports = [
     type: 'string',
     title: 'Présence ou absence d\'un dispositif d\'éducation prioritaire',
     'x-labels': {
-      '0': 'Absence',
-      '1': 'Présence',
+      0: 'Absence',
+      1: 'Présence',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -861,8 +861,8 @@ module.exports = [
     type: 'string',
     title: 'Présence ou absence d\'une classe préparatoire aux grandes écoles en lycée',
     'x-labels': {
-      '0': 'Absence',
-      '1': 'Présence',
+      0: 'Absence',
+      1: 'Présence',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -875,8 +875,8 @@ module.exports = [
     title: 'Aménagement permettant l\'accessibilité',
     description: 'Présence d’un aménagement permettant l’accessibilité d’au moins une aire de pratique, au sein d’une même installation, aux personnes handicapées moteur ou à mobilité réduite',
     'x-labels': {
-      '0': 'Absence',
-      '1': 'Présence',
+      0: 'Absence',
+      1: 'Présence',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -889,8 +889,8 @@ module.exports = [
     title: 'Accès libre permanent',
     description: 'Présence d’un équipement en accès libre permanent',
     'x-labels': {
-      '0': 'Absence',
-      '1': 'Présence',
+      0: 'Absence',
+      1: 'Présence',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -903,8 +903,8 @@ module.exports = [
     title: 'Accessibilité des sanitaires',
     description: 'Présence d’un aménagement permettant l’accessibilité d’au moins un sanitaire, au sein d’une même installation, aux personnes handicapées moteur ou à mobilité réduite',
     'x-labels': {
-      '0': 'Absence',
-      '1': 'Présence',
+      0: 'Absence',
+      1: 'Présence',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -917,8 +917,8 @@ module.exports = [
     title: 'Accessibilité des vestiaires',
     description: 'Présence d’un aménagement permettant l’accessibilité d’au moins un vestiaire et une douche, au sein d’une même installation, aux personnes handicapées moteur ou à mobilité réduite',
     'x-labels': {
-      '0': 'Absence',
-      '1': 'Présence',
+      0: 'Absence',
+      1: 'Présence',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -931,11 +931,11 @@ module.exports = [
     title: 'Catégorie d’ERP',
     description: 'Catégorie d’établissement recevant du public (ERP)',
     'x-labels': {
-      '1': 'Au-dessus de 1500 personnes',
-      '2': 'De 701 à 1500 personnes',
-      '3': 'De 301 à 700 Personnes',
-      '4': 'De 101 à 300 personnes',
-      '5': 'Inférieur ou égal à 100 personnes',
+      1: 'Au-dessus de 1500 personnes',
+      2: 'De 701 à 1500 personnes',
+      3: 'De 301 à 700 Personnes',
+      4: 'De 101 à 300 personnes',
+      5: 'Inférieur ou égal à 100 personnes',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -947,8 +947,8 @@ module.exports = [
     type: 'string',
     title: 'Présence de douches',
     'x-labels': {
-      '0': 'Absence',
-      '1': 'Présence',
+      0: 'Absence',
+      1: 'Présence',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -960,8 +960,8 @@ module.exports = [
     type: 'string',
     title: 'Présence de sanitaires',
     'x-labels': {
-      '0': 'Absence',
-      '1': 'Présence',
+      0: 'Absence',
+      1: 'Présence',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -974,8 +974,8 @@ module.exports = [
     title: 'Ouverture exclusivement saisonnière',
     description: 'Présence d’un équipement à l’ouverture exclusivement saisonnière',
     'x-labels': {
-      '0': 'Absence',
-      '1': 'Présence',
+      0: 'Absence',
+      1: 'Présence',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -988,8 +988,8 @@ module.exports = [
     title: 'Partie couverte',
     description: 'Présence ou absence d’équipement(s) avec au moins une partie couverte',
     'x-labels': {
-      '0': 'Absence',
-      '1': 'Présence',
+      0: 'Absence',
+      1: 'Présence',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -1002,8 +1002,8 @@ module.exports = [
     title: 'Partie éclairée',
     description: 'Présence ou absence d\'équipement(s) avec au moins une partie éclairée',
     'x-labels': {
-      '0': 'Absence',
-      '1': 'Présence',
+      0: 'Absence',
+      1: 'Présence',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -1015,8 +1015,8 @@ module.exports = [
     type: 'string',
     title: 'Présence d’un cinéma multiplexe',
     'x-labels': {
-      '0': 'Absence',
-      '1': 'Présence',
+      0: 'Absence',
+      1: 'Présence',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -1028,8 +1028,8 @@ module.exports = [
     type: 'string',
     title: 'Présence d’une structure itinérante',
     'x-labels': {
-      '0': 'Absence',
-      '1': 'Présence',
+      0: 'Absence',
+      1: 'Présence',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -1144,8 +1144,8 @@ module.exports = [
     type: 'string',
     title: 'Gaz de pétrole liquéfiés',
     'x-labels': {
-      '0': 'Absence',
-      '1': 'Présence',
+      0: 'Absence',
+      1: 'Présence',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },
@@ -1157,11 +1157,11 @@ module.exports = [
     type: 'string',
     title: 'Implantation d’une station de recharge',
     'x-labels': {
-      '1': 'Voirie',
-      '2': 'Parking public',
-      '3': 'Parking privé à usage public',
-      '4': 'parking privé réservé à la clientèle',
-      '5': 'Station dédiée à la recharge rapide',
+      1: 'Voirie',
+      2: 'Parking public',
+      3: 'Parking privé à usage public',
+      4: 'parking privé réservé à la clientèle',
+      5: 'Station dédiée à la recharge rapide',
       _U: 'Indéterminé',
       _Z: 'Sans objet'
     },

@@ -1,7 +1,6 @@
-
 const keysToMerge = ['bovins', 'porcs', 'volailles', 'carriere', 'eolienne', 'industrie']
 
-module.exports = function (item) {
+export default function (item: Record<string, any>): Record<string, any> {
   const values = []
   for (const key of keysToMerge) {
     if (item[key] === '1') values.push(key)
@@ -9,8 +8,8 @@ module.exports = function (item) {
   }
   item.famille_ic = values.join(';')
   const match = item.WKT.match(/POINT \((.*) (.*)\)/)
-  item.longitude = Number(parseFloat(match[1]).toFixed(5))
-  item.latitude = Number(parseFloat(match[2]).toFixed(5))
+  item.longitude = Number(parseFloat(match![1]).toFixed(5))
+  item.latitude = Number(parseFloat(match![2]).toFixed(5))
   delete item.WKT
   if (item.num_dep.length) item.num_dep = item.num_dep.padStart(2, '0')
   if (item.cd_insee.length) item.cd_insee = item.cd_insee.padStart(5, '0')

@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {
     key: 'civilite',
     'x-originalName': 'civilité',

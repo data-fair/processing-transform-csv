@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {
     key: 'nom_copropriete',
     'x-originalName': 'nom_copropriete',

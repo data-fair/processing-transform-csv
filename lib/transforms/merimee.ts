@@ -1,4 +1,4 @@
-module.exports = function (item) {
+export default function (item: Record<string, any>): Record<string, any> {
   let latitude, longitude
   if (item.coordonnees_au_format_WGS84) {
     latitude = item.coordonnees_au_format_WGS84.split(',')[0]
@@ -35,8 +35,8 @@ module.exports = function (item) {
     typologie_de_la_zone_de_protection: item.Typologie_de_la_zone_de_protection,
     statut_juridique_de_l_edifice: item.Statut_juridique_de_l_edifice,
     technique_du_decor_porte_de_l_edifice: item.Technique_du_decor_porte_de_l_edifice,
-    latitude: latitude,
-    longitude: longitude
+    latitude,
+    longitude
   }
 
   return filteredItem
