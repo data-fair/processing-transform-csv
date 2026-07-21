@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "x-display": "tabs",
+  "layout": "tabs",
   "required": ["datasetMode"],
   "allOf": [{
     "title": "Jeu de données",
@@ -13,7 +13,6 @@
           "type": "object",
           "required": ["title"],
           "properties": {
-            "id": {"type": "string", "title": "Identifiant (laissez vide pour calculer un identifiant à partir du titre)"},
             "title": {"type": "string", "title": "Titre"}
           }
         }
@@ -26,14 +25,19 @@
         "dataset": {
           "type": "object",
           "title": "Jeu de donnée existant",
-          "x-fromUrl": "{context.dataFairUrl}/api/v1/datasets?q={q}&select=id,title&{context.ownerFilter}",
-          "x-itemsProp": "results",
-          "x-itemTitle": "title",
-          "x-itemKey": "id",
           "properties": {
             "id": {"type": "string", "title": "Identifiant"},
             "href": { "type": "string", "title": "url" },
             "title": {"type": "string", "title": "Titre"}
+          },
+          "layout": {
+            "getItems": {
+              "url": "${context.dataFairUrl}/api/v1/datasets?select=id,title&file=true&${context.ownerFilter}&raw=true",
+              "qSearchParam": "q",
+              "itemsResults": "data.results",
+              "itemTitle": "item.title",
+              "itemKey": "item.id"
+            }
           }
         }
       }
@@ -43,11 +47,6 @@
     "required": ["url", "processType"],
     "properties": {
       "url": {"title": "URL source", "type": "string", "description": "les protocoles supportés sont HTTP, HTTPS"},
-      "clearFiles": {
-        "title": "supprimer les fichiers téléchargés",
-        "type": "boolean",
-        "default": true
-      },
       "processType": {
         "type": "string",
         "title": "Fichier à traiter",
@@ -55,7 +54,7 @@
           { "const": "rnic", "title": "Registre national d'Immatriculation des Copropriétés" },
           { "const": "icpe", "title": "Installations Classées Protection de l'Environnement" },
           { "const": "cog", "title": "Communes du COG" },
-          { "const": "bpe", "title": "Base Permanente des Equipements"},
+          { "const": "bpe", "title": "Base Permanente des Équipements"},
           { "const": "merimee", "title": "Monuments Historiques"},
           { "const": "cnam", "title": "Annuaire santé de la Cnam"}
         ]

@@ -18,7 +18,9 @@ export const setShouldBeStopped = (v: boolean): void => { shouldBeStopped = v }
 export const isStopped = (): boolean => shouldBeStopped
 
 const process = async (processingConfig: ProcessingConfig, dir: string, log: ProcessingContext<ProcessingConfig>['log']): Promise<void> => {
-  const readStream = fs.createReadStream(path.join(dir, processingConfig.processType + '-source.csv'), { objectMode: true })
+  await log.step('Transformation des données')
+
+  const readStream = fs.createReadStream(path.join(dir, processingConfig.processType + '-source.csv'))
   const writeStream = fs.createWriteStream(path.join(dir, processingConfig.processType + '-transformed.csv'), { flags: 'w' })
   const transform = (await import('./transforms/' + processingConfig.processType + '.ts')).default as TransformFn
   let delimiter = ','
@@ -30,6 +32,9 @@ const process = async (processingConfig: ProcessingConfig, dir: string, log: Pro
     parseOptions.quote = null
     parseOptions.columns = headers
   }
+
+  let read = 0
+  let written = 0
   await pump(
     readStream,
     parse(parseOptions),
@@ -37,15 +42,23 @@ const process = async (processingConfig: ProcessingConfig, dir: string, log: Pro
       objectMode: true,
       transform: async (obj, _, next) => {
         if (shouldBeStopped) return next()
+        read++
         const transformed = transform(obj)
         if (processingConfig.filter && processingConfig.filter.column && transformed[processingConfig.filter.column] !== processingConfig.filter.value) next()
-        else next(null, transformed)
+        else {
+          written++
+          next(null, transformed)
+        }
       }
     }),
     stringify({ header: true, quoted_string: processingConfig.processType !== 'cnam' }),
     writeStream
   )
   writeStream.end()
+
+  if (shouldBeStopped) return
+  const filtered = read - written
+  await log.info(`${written.toLocaleString('fr-FR')} lignes transformées${filtered > 0 ? ` (${filtered.toLocaleString('fr-FR')} filtrées sur ${read.toLocaleString('fr-FR')} lues)` : ''}.`)
 }
 
 export default process

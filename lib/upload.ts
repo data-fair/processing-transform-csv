@@ -35,6 +35,7 @@ export default async (
 
   const getLength = promisify(formData.getLength).bind(formData)
 
+  await log.step('Publication du jeu de données')
   try {
     const dataset = (await axios({
       method: 'post',
@@ -44,11 +45,16 @@ export default async (
       maxBodyLength: Infinity,
       headers: { ...formData.getHeaders(), 'content-length': await getLength() }
     })).data
-    await log.info(`jeu de donnée ${processingConfig.datasetMode === 'update' ? 'mis à jour' : 'créé'}, id="${dataset.id}", title="${dataset.title}"`)
+    await log.info(`Jeu de données ${processingConfig.datasetMode === 'update' ? 'mis à jour' : 'créé'} : ${dataset.title} (${dataset.id}).`)
     if (processingConfig.datasetMode === 'create') {
       await patchConfig({ datasetMode: 'update', dataset: { id: dataset.id, title: dataset.title } })
     }
-  } catch (err) {
-    console.log(JSON.stringify(err, null, 2))
+  } catch (err: any) {
+    // Ne jamais avaler l'erreur : sinon le traitement se termine « au vert »
+    // sans avoir rien publié. L'axios du service rejette déjà une erreur au
+    // message propre (« 409 - … ») ; on partage juste le corps renvoyé par Data
+    // Fair en `extra`, puis on relaie l'erreur pour faire échouer le run.
+    await log.error('Échec de la publication du jeu de données.', err.data)
+    throw err
   }
 }

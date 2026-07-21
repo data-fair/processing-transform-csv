@@ -7,27 +7,6 @@ export default [
     'x-group': 'Identification de l\'équipement'
   },
   {
-    key: 'idequip',
-    'x-originalName': 'IDEQUIP',
-    type: 'string',
-    title: 'Identifiant de l\'équipement',
-    'x-group': 'Identification de l\'équipement'
-  },
-  {
-    key: 'idsource',
-    'x-originalName': 'IDSOURCE',
-    type: 'string',
-    title: 'Identifiant transmis par le fournisseur',
-    'x-group': 'Identification de l\'équipement'
-  },
-  {
-    key: 'sou',
-    'x-originalName': 'SOU',
-    type: 'string',
-    title: 'Code source',
-    'x-group': 'Identification de l\'équipement'
-  },
-  {
     key: 'nomrs',
     'x-originalName': 'NOMRS',
     type: 'string',

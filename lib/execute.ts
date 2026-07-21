@@ -1,6 +1,6 @@
 import type { RunFunction } from '@data-fair/lib-common-types/processings.js'
 import type { ProcessingConfig } from '#types/processingConfig/index.ts'
-import { download, clearFiles } from './fetch-data.ts'
+import { download } from './fetch-data.ts'
 import process, { setShouldBeStopped, isStopped } from './process.ts'
 import upload from './upload.ts'
 
@@ -14,13 +14,12 @@ export const run: RunFunction<ProcessingConfig> = async (context) => {
   await process(processingConfig, tmpDir, log)
 
   if (isStopped()) {
-    await log.warning('Traitement interrompu, pas de publication')
+    await log.warning('Traitement interrompu, pas de publication.')
     return
   }
 
   await upload(processingConfig, processingId, tmpDir, axios, log, patchConfig)
 
-  if (processingConfig.clearFiles) {
-    await clearFiles(tmpDir, log)
-  }
+  // Pas de nettoyage ici : le worker crée un tmpDir par run et le supprime.
+  await log.info('Traitement terminé.')
 }
