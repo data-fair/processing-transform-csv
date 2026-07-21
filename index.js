@@ -19,6 +19,10 @@ exports.run = async ({ pluginConfig, processingConfig, processingId, dir, tmpDir
     const schema = require(`./lib/schemas/${processingConfig.processType}.js`)
     formData.append('schema', JSON.stringify(schema))
   }
+  if (fs.existsSync(`./lib/extensions/${processingConfig.processType}.js`) && processingConfig.datasetMode === 'create') {
+    const extensions = require(`./lib/extensions/${processingConfig.processType}.js`)
+    formData.append('extensions', JSON.stringify(extensions))
+  }
 
   formData.getLength = util.promisify(formData.getLength)
 
