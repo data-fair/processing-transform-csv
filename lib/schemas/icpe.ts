@@ -5,7 +5,7 @@ const IDENTIFICATION = 'Identification'
 const ACTIVITE = 'Activité et classement'
 const RUBRIQUES = 'Rubriques ICPE'
 const LOCALISATION = 'Localisation'
-const COORDS_SOURCE = 'Coordonnées source (technique)'
+const COORDS_SOURCE = 'Coordonnées source'
 const SUIVI = 'Suivi'
 
 export default [
@@ -89,6 +89,7 @@ export default [
       AUTRE: 'Autres régimes',
       NEANT: 'Non ICPE'
     },
+    description: 'Régime de classement le plus contraignant de l\'établissement au titre de la nomenclature ICPE :\n- **A — Autorisation** : exploitation soumise à autorisation préfectorale, pour les installations présentant les risques ou nuisances les plus importants.\n- **E — Enregistrement** : autorisation simplifiée, régime intermédiaire entre l\'autorisation et la déclaration.\n- **AUTRE — Autres régimes** : établissement relevant d\'un autre régime, principalement la déclaration (D) ou la déclaration à contrôle périodique (DC).\n- **NEANT — Non ICPE** : site non classé ICPE mais présent dans la base car ayant fait l\'objet d\'une inspection.',
     title: 'Régime',
     'x-group': ACTIVITE
   },
@@ -127,6 +128,7 @@ export default [
     key: 'rubriques_autorisation',
     'x-originalName': 'rubriques_autorisation',
     type: 'string',
+    separator: ' | ',
     title: 'Rubriques en autorisation',
     'x-group': RUBRIQUES
   },
@@ -134,6 +136,7 @@ export default [
     key: 'rubriques_enregistrement',
     'x-originalName': 'rubriques_enregistrement',
     type: 'string',
+    separator: ' | ',
     title: 'Rubriques en enregistrement',
     'x-group': RUBRIQUES
   },
@@ -141,6 +144,7 @@ export default [
     key: 'rubriques_declaration',
     'x-originalName': 'rubriques_declaration',
     type: 'string',
+    separator: ' | ',
     title: 'Rubriques en déclaration',
     'x-group': RUBRIQUES
   },
@@ -176,7 +180,7 @@ export default [
     'x-originalName': 'cd_insee',
     type: 'string',
     'x-refersTo': 'http://rdf.insee.fr/def/geo#codeCommune',
-    title: 'Code Insee',
+    title: 'Code Commune (INSEE)',
     'x-group': LOCALISATION
   },
   {
@@ -185,7 +189,7 @@ export default [
     type: 'string',
     'x-refersTo': 'http://rdf.insee.fr/def/geo#codeDepartement',
     'x-capabilities': { textAgg: true },
-    title: 'Département',
+    title: 'Code Département',
     'x-group': LOCALISATION
   },
   {

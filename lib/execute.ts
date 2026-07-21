@@ -19,7 +19,4 @@ export const run: RunFunction<ProcessingConfig> = async (context) => {
   }
 
   await upload(processingConfig, processingId, tmpDir, axios, log, patchConfig)
-
-  // Pas de nettoyage ici : le worker crée un tmpDir par run et le supprime.
-  await log.info('Traitement terminé.')
 }
