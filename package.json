@@ -15,8 +15,16 @@
   "imports": {
     "#types/*": "./types/*"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/data-fair/processing-transform-csv.git"
+  },
   "author": "",
   "license": "AGPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/data-fair/processing-transform-csv/issues"
+  },
+  "homepage": "https://github.com/data-fair/processing-transform-csv#readme",
   "keywords": [
     "data-fair-processings-plugin"
   ],
