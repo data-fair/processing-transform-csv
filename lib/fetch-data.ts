@@ -36,12 +36,13 @@ const streamToFile = async (filePath: string, fn: (writeStream: fs.WriteStream) 
  * `BPE25.csv` (en majuscules) était supplanté par le binaire zip. La sélection
  * du fichier de données est insensible à la casse.
  */
-const extractCsv = async (zipPath: string, dir: string, processType: string, log: Log): Promise<void> => {
+export const extractCsv = async (zipPath: string, dir: string, processType: string, log: Log): Promise<void> => {
   const extractDir = path.join(dir, processType + '-extract')
   await fs.emptyDir(extractDir)
   await execFile('unzip', ['-o', zipPath, '-d', extractDir])
 
-  const files = await fs.readdir(extractDir)
+  // regular files only: unzip restores the symbolic links of an archive, they could point to any local file
+  const files = (await fs.readdir(extractDir, { withFileTypes: true })).filter(f => f.isFile()).map(f => f.name)
   const match = files.find(f => f.toLowerCase().startsWith(processType)) ??
     files.find(f => f.toLowerCase().endsWith('.csv'))
   if (!match) {
